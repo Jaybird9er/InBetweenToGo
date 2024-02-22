@@ -1,3 +1,5 @@
+/* start of project  */
+
 .main {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,47 @@
   padding: 6rem;
   min-height: 100vh;
 }
+
+.Gameboard { 
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  min-height: 6vh;
+  min-width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.Card_Gutter {
+  background-color: darkblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.5rem;
+  min-height: 20vh;
+  min-width: 100%;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.Card {
+  background-color: lightsteelblue;
+  color: black;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  min-height: 20vh;
+  min-width: 15vw;
+  align-items: center;
+  margin: 1rem;
+  border-radius: 5px;
+}
+
+
+/* end of project CSS */
 
 .description {
   display: inherit;
@@ -107,12 +150,6 @@
 
 .logo {
   position: relative;
-}
-
-.gameboard {
-  background-color: lightblue;
-  min-height: 550px;
-  max-width: 400px;
 }
 
 /* Enable hover only on non-touch devices */

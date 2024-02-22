@@ -4,7 +4,7 @@ import styles from "./page.module.css";
  ~ Component Hierarchy ~
 
  • GameBoard
-  • CardDisplay
+  • CardGutter
     • Cards (Top / Middle / Bottom)
   • ButtonPanel
     • Buttons
@@ -12,9 +12,27 @@ import styles from "./page.module.css";
 
 */
 
-function GameBoard () {
+function GameBoard() {
   return (
-    <div className={styles.gameboard}>
+    <div className={styles.Gameboard}>
+      <CardGutter />
+    </div>
+  );
+}
+
+function CardGutter() {
+  return (
+    <div className={styles.Card_Gutter}>
+      <Card />
+      <Card />
+      <Card />
+    </div>
+  );
+}
+
+function Card() {
+  return (
+    <div className={styles.Card}>
       Test
     </div>
   );
@@ -23,7 +41,7 @@ function GameBoard () {
 
 export default function Home() {
   return (
-    <main>
+    <main className={styles.main}>
       <GameBoard />
     </main>
   );
