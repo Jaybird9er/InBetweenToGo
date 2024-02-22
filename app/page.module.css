@@ -108,6 +108,13 @@
 .logo {
   position: relative;
 }
+
+.gameboard {
+  background-color: lightblue;
+  min-height: 550px;
+  max-width: 400px;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
