@@ -10,13 +10,13 @@
 }
 
 .Gameboard { 
-  background-color: lightblue;
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
   min-height: 6vh;
-  min-width: 100%;
+  min-width: 42rem;
   flex-wrap: wrap;
   align-items: center;
   flex-grow: 1;
@@ -41,9 +41,109 @@
   justify-content: center;
   padding: 0.5rem;
   min-height: 20vh;
-  min-width: 15vw;
+  min-width: 8rem;
   align-items: center;
   margin: 1rem;
+  border-radius: 5px;
+}
+
+.Pot {
+  background-color: orchid;
+  color: black;
+  display: flex;
+  padding: 0.5rem;
+  min-height: 15vh;
+  min-width: 15vh;
+  margin: 1rem;
+  border-radius: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Button_Panel {
+  background-color: mediumaquamarine;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.5rem;
+  min-height: 18vh;
+  min-width: 100%;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.Bet_Display {
+  background-color: lightgray;
+  color: black;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  min-height: 10vh;
+  min-width: 7rem;
+  align-items: center;
+  margin: 0.5rem;
+  border-radius: 5px;
+}
+
+.Buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 18vh;
+  width: 100%;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.Bet_Panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+  min-height: 18vh;
+  min-width: 0;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.Increase_Bet {
+  color: black;
+  display: flex;
+  width: 0;
+  height: 0;
+  border-left: 2rem solid transparent;
+  border-right: 2rem solid transparent;
+  border-bottom: 3rem solid rosybrown;
+  flex-direction: column;
+  line-height: 62.5px;
+  align-items: center;
+}
+
+.Decrease_Bet {
+  color: black;
+  display: flex;
+  width: 0;
+  height: 0;
+  border-left: 2rem solid transparent;
+  border-right: 2rem solid transparent;
+  border-bottom: 3rem solid rosybrown;
+  flex-direction: column;
+  line-height: 62.5px;
+  align-items: center;
+  transform: rotate(180deg);
+}
+
+.Play_Deal {
+  background-color: rosybrown;
+  color: black;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  min-height: 10vh;
+  min-width: 7rem;
+  align-items: center;
+  margin: 0.5rem;
   border-radius: 5px;
 }
 
