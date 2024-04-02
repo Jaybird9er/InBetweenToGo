@@ -13,7 +13,6 @@ import styles from "./page.module.css";
             • IncreaseBet
             • DecreaseBet
           • PlayDeal
-      
 
  ~ State Determinants ~
   • Not state
@@ -35,27 +34,36 @@ import styles from "./page.module.css";
 function GameBoard() {
   return (
     <section className={styles.Gameboard}>
-      <CardGutter />
+      <CardGutter nextDeck={nextDeck} />
       <Pot />
       <ButtonPanel />
     </section>
   );
 }
+interface DeckProps {
+  value: number, 
+  symbol: string, 
+  label: string, 
+  color: string
+}
 
-function CardGutter() {
+function CardGutter({ nextDeck }: any) {
   return (
     <section className={styles.Card_Gutter}>
-      <Card />
-      <Card />
-      <Card />
+      <Card nextDeck={nextDeck[nextDeck.length - 3]}/>
+      <Card nextDeck={nextDeck[nextDeck.length - 1]}/>
+      <Card nextDeck={nextDeck[nextDeck.length - 2]}/>
     </section>
   );
 }
 
-function Card() {
+
+function Card({ nextDeck }: any) {
   return (
     <div className={styles.Card}>
-      ♠️
+      <span style={{color: nextDeck.color}}>{nextDeck.label}</span>
+      &nbsp;:&nbsp;
+      <span style={{color: nextDeck.color}}>{nextDeck.symbol}</span>
     </div>
   );
 }
@@ -140,41 +148,54 @@ const testDeck = [
 
 testDeck.push({value: 8, symbol: "♠️"});
 
-const deck = () => {
+const buildDeck = () => {
   const makeDeck = [];
+  const suitsArr = ["♠️", "♥️", "♣️", "♦️"];
+  const labelsArr = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+  let suit = "";
+  let shade = "";
+  
+  // The first loop sets the suit and color
   for (let i = 0; i < 4; i++) {
-    let suit = "";
-    let shade = "";
-    if (i === 0) {
-      suit = "♠️"
-      shade = "black"
-    } else if (i === 1) {
-      suit = "♣️"
-      shade = "black"
-    } else if (i === 2) {
-      suit = "♥️"
-      shade = "red"
-    } else if (i === 3) {
-      suit = "♦️"
-      shade = "red"
-    }
-    for (let i = 2; i < 15; i++) {
-      if (i < 11) {
-        makeDeck.push({rank: i, symbol: suit, value: i.toString(), color: shade})
-      } else if (i === 11) {
-        makeDeck.push({rank: i, symbol: suit, value: "J", color: shade})
-      } else if (i === 12){
-        makeDeck.push({rank: i, symbol: suit, value: "Q", color: shade})
-      } else if (i === 13){
-        makeDeck.push({rank: i, symbol: suit, value: "K", color: shade})
-      } else {
-        makeDeck.push({rank: i, symbol: suit, value: "A", color: shade})
-      }
+    suit = suitsArr[i];
+    shade = i % 2 === 0 ? "black" : "red";
+    
+    // The 2nd loop sets the values and labels, and then pushes each object to makeDeck
+    for (let n = 2; n < 15; n++) {
+      makeDeck.push({value: n, symbol: suit, label: labelsArr[n - 2], color: shade})
     }
   }
   
   return makeDeck;
 }
+
+function shuffle(deckArr: any[]) {
+  let currentDeck = deckArr.length;
+  // While there remain elements to shuffle...
+  while (currentDeck != 0) {
+
+    // Pick a remaining element...
+    let shuffleDeck = Math.floor(Math.random() * currentDeck);
+    currentDeck--;
+
+    // And swap it with the current element.
+    [deckArr[currentDeck], deckArr[shuffleDeck]] = [deckArr[shuffleDeck], deckArr[currentDeck]];
+
+  }
+  return deckArr;
+}
+
+let nextDeck = buildDeck().slice();
+// can pop
+nextDeck.pop()
+nextDeck.pop()
+nextDeck.pop()
+nextDeck.pop()
+nextDeck.pop()
+nextDeck.pop()
+// Can reset nextDeck
+// nextDeck = buildDeck().slice();
+nextDeck = shuffle(nextDeck);
 
 
 export default function Home() {
@@ -185,9 +206,17 @@ export default function Home() {
   console.log(testDeck[6]); 
   console.log(testDeck[5]); 
   console.log(testDeck.length); 
-  console.log(deck()); 
-  console.log(deck().length); 
-  console.log(deck()[Math.floor(Math.random() * 51)]); 
+  console.log(buildDeck()); 
+  console.log(buildDeck().length); 
+  console.log(buildDeck()[Math.floor(Math.random() * 51)]); 
+  console.log(shuffle(buildDeck())); 
+  // console.log("newdeck" + newDeck(buildDeck()).length);
+  console.log("nextDeck_0: " + nextDeck[33].symbol + "  " + nextDeck[33].label);
+  console.log(buildDeck()[51]);
+  console.log(nextDeck[48]);
+  console.log(buildDeck().length);
+  console.log(nextDeck.length);
+  console.log(nextDeck);
   
   return (
     <main className={styles.main}>
