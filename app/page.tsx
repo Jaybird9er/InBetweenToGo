@@ -1,3 +1,4 @@
+import { validateHeaderName } from "http";
 import styles from "./page.module.css";
 
 /* 
@@ -34,36 +35,76 @@ import styles from "./page.module.css";
 function GameBoard() {
   return (
     <section className={styles.Gameboard}>
-      <CardGutter nextDeck={nextDeck} />
+      <CardGutter card={nextDeck} />
       <Pot />
       <ButtonPanel />
     </section>
   );
 }
-interface DeckProps {
+interface Cards {
   value: number, 
-  symbol: string, 
+  symbol: string,
   label: string, 
   color: string
 }
 
-function CardGutter({ nextDeck }: any) {
+interface Deck {
+  card: Cards[];
+}
+
+function CardGutter(props: Deck) {
+  let cards = props.card;
+  let card1 = {
+    value: 0,
+    symbol: "",
+    label: "",
+    color: ""
+  };
+  let card2 = {
+    value: 0,
+    symbol: "",
+    label: "",
+    color: ""
+  };
+  let card3 = {
+    value: 0,
+    symbol: "",
+    label: "",
+    color: ""
+  };
+
+  for(let i = 1; i <= 3; i++) {
+    if (i === 3) {
+      card1 = cards[cards.length - i];
+    } else if ( i === 2) {
+      card2 = cards[cards.length - i]
+    } else {
+      card3 = cards[cards.length - i]
+    }
+  }
   return (
     <section className={styles.Card_Gutter}>
-      <Card nextDeck={nextDeck[nextDeck.length - 3]}/>
-      <Card nextDeck={nextDeck[nextDeck.length - 1]}/>
-      <Card nextDeck={nextDeck[nextDeck.length - 2]}/>
+      <Card key={1} value={card1.value} symbol={card1.symbol} label={card1.label} color={card1.color} />
+      <div className={styles.Middle_Card}>
+        <Card key={3} value={card3.value} symbol={card3.symbol} label={card3.label} color={card3.color} />
+      </div>
+      <Card key={2} value={card2.value} symbol={card2.symbol} label={card2.label} color={card2.color} />
     </section>
   );
 }
 
 
-function Card({ nextDeck }: any) {
+function Card(props: Cards) {
+  let value = props.value;
+  let symbol = props.symbol;
+  let label = props.label;
+  let color = props.color;
+
   return (
     <div className={styles.Card}>
-      <span style={{color: nextDeck.color}}>{nextDeck.label}</span>
+      <span style={{ color: color }}>{label}</span>
       &nbsp;:&nbsp;
-      <span style={{color: nextDeck.color}}>{nextDeck.symbol}</span>
+      <span style={{ color: color }}>{symbol}</span>
     </div>
   );
 }
@@ -137,16 +178,6 @@ function PlayDeal() {
   );
 }
 
-const testDeck = [
-  {value: 2, symbol: "♠️"},
-  {value: 3, symbol: "♠️"},
-  {value: 4, symbol: "♠️"},
-  {value: 5, symbol: "♠️"},
-  {value: 6, symbol: "♠️"},
-  {value: 7, symbol: "♠️"},
-];
-
-testDeck.push({value: 8, symbol: "♠️"});
 
 const buildDeck = () => {
   const makeDeck = [];
@@ -193,6 +224,11 @@ nextDeck.pop()
 nextDeck.pop()
 nextDeck.pop()
 nextDeck.pop()
+
+
+nextDeck.pop()
+nextDeck.pop()
+nextDeck.pop()
 // Can reset nextDeck
 // nextDeck = buildDeck().slice();
 nextDeck = shuffle(nextDeck);
@@ -200,23 +236,21 @@ nextDeck = shuffle(nextDeck);
 
 export default function Home() {
 
-  console.log(testDeck[0].value + " : " + testDeck[0].symbol); 
-  console.log(testDeck[1].value + " : " + testDeck[1].symbol); 
-  console.log(testDeck[1]); 
-  console.log(testDeck[6]); 
-  console.log(testDeck[5]); 
-  console.log(testDeck.length); 
-  console.log(buildDeck()); 
-  console.log(buildDeck().length); 
-  console.log(buildDeck()[Math.floor(Math.random() * 51)]); 
-  console.log(shuffle(buildDeck())); 
-  // console.log("newdeck" + newDeck(buildDeck()).length);
+  const aDeck = buildDeck().slice();
+ 
+  // console.log(buildDeck()); 
+  // console.log(buildDeck().length); 
+  // console.log(buildDeck()[Math.floor(Math.random() * 51)]); 
+  // console.log(shuffle(buildDeck())); 
+  // // console.log("newdeck" + newDeck(buildDeck()).length);
   console.log("nextDeck_0: " + nextDeck[33].symbol + "  " + nextDeck[33].label);
   console.log(buildDeck()[51]);
-  console.log(nextDeck[48]);
+  console.log(nextDeck[45]);
   console.log(buildDeck().length);
   console.log(nextDeck.length);
   console.log(nextDeck);
+  // console.log("aDeck");
+  // console.log(aDeck);
   
   return (
     <main className={styles.main}>
