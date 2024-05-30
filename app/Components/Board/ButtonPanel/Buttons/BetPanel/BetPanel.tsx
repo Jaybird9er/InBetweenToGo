@@ -1,12 +1,12 @@
 import styles from "../../../../../page.module.css";
-import IncreaseBet from "./IncreaseBet";
 import DecreaseBet from "./DecreaseBet";
+import IncreaseBet from "./IncreaseBet";
 
-function BetPanel() {
+function BetPanel(props: { changeBet(state: boolean): void }) {
     return (
       <div className={styles.Bet_Panel}>
-        <IncreaseBet />
-        <DecreaseBet />
+        <IncreaseBet changeBet={props.changeBet} />
+        <DecreaseBet changeBet={props.changeBet} />
       </div>
     );
   }

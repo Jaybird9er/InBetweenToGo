@@ -1,11 +1,16 @@
+import { channel } from "diagnostics_channel";
 import styles from "../../../../../page.module.css";
 
-function IncreaseBet() {
-    return (
-      <button className={styles.Increase_Bet}>
-        +
-      </button>
-    );
+function IncreaseBet(props: { changeBet(state: boolean): void }) {
+  function change() {
+    props.changeBet(true);
   }
 
-  export default IncreaseBet;
+  return (
+    <button className={styles.Increase_Bet} onClick={change} >
+      +
+    </button>
+  );
+}
+
+export default IncreaseBet;

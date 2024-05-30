@@ -1,11 +1,15 @@
 import styles from "../../../../../page.module.css";
 
-function DecreaseBet() {
-    return (
-      <button className={styles.Decrease_Bet}>
-        -
-      </button>
-    );
+function DecreaseBet(props: { changeBet(state: boolean): void }) {
+  function change() {
+    props.changeBet(false);
   }
 
-  export default DecreaseBet;
+  return (
+    <button className={styles.Decrease_Bet} onClick={change}>
+      -
+    </button>
+  );
+}
+
+export default DecreaseBet;

@@ -4,6 +4,7 @@ import { Deck } from "@/app/interface";
 
 // interfaces required for applying type to props
 function CardGutter(props: Deck) {
+    
     let cards = props.card;
     let card1 = {
         value: 0,
