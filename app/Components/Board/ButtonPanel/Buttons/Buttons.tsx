@@ -1,12 +1,12 @@
-import styles from "../../../../page.module.css";
-import BetPanel from "./BetPanel/BetPanel";
+import BetPanel from "./BetPanel";
 import PlayDeal from "./PlayDeal";
 
-function Buttons(props: { changeBet(state: boolean): void }) {
-
+function Buttons(props: any) {
+    const style: { [className: string]: string } = props.style;
+    
     return (
-        <div className={styles.Buttons}>
-        <BetPanel changeBet={props.changeBet} />
+        <div className={style.Buttons}>
+        <BetPanel changeBet={props.changeBet} style={style} />
         <PlayDeal />
         </div>
     );

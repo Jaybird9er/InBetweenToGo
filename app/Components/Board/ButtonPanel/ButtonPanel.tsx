@@ -1,20 +1,15 @@
-import styles from "../../../page.module.css";
 import BetDisplay from "./BetDisplay";
-import Buttons from "./Buttons/Buttons";
+import BetPanel from "./Buttons/BetPanel";
+import PlayDeal from "./Buttons/PlayDeal";
 
-interface ChildProps {
-  testFn: () => void;
-}
-
-function ButtonPanel( props: {bet: number, changeBet(state: boolean): void} ) {
-  // if (props.bet === 0) {
-  //   props.changeBet(true);
-  // }
+function ButtonPanel( props: any ) {
+  const style: { [className: string]: string } = props.style;
 
   return (
-    <section className={styles.Button_Panel}>
+    <section className={style.Button_Panel}>
       <BetDisplay bet={props.bet} />
-      <Buttons changeBet={props.changeBet} />
+      <BetPanel changeBet={props.changeBet} style={style} />
+      <PlayDeal />
     </section>
   );
 }
