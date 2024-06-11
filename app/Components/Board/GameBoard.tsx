@@ -4,16 +4,22 @@ import Pot from "./Pot";
 import ButtonPanel from "./ButtonPanel/ButtonPanel";
 import newDeck from "../Deck/newDeck";
 import { useState, useEffect } from "react";
-import { todo } from "node:test";
 
 function GameBoard() {
   let pot = true ? 10 : 5 ;
   const [bet, setBet] = useState(0); // bet begins at $0; changes to $1 after 1st deal
-  const [deal, setDeal] = useState(false); // false = Deal ~ true = Play
+  const [deal, setDeal] = useState(true); // false = Play ~ true = Deal
   const style: { [className: string]: string }  = styles;
+  let dealButton = deal ? "Play" : "Deal";
   
   function playDeal(): void {
     // initiate start of game
+    // before game starts
+    if(deal) {
+      setDeal(false);
+    } else {
+      setDeal(true);
+    }
   }
 
   function changeBet(state: boolean): void {
@@ -42,7 +48,7 @@ function GameBoard() {
     <section className={style.Gameboard}>
       <CardGutter card={newDeck} />
       <Pot pot={pot} />
-      <ButtonPanel bet={bet} changeBet={changeBet} style={style} />
+      <ButtonPanel bet={bet} changeBet={changeBet} style={style} playDeal={playDeal} dealButton={dealButton} />
     </section>
   );
 }

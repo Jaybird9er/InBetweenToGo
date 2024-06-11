@@ -129,8 +129,16 @@
   transform: rotate(180deg);
 }
 
+.Increase_Bet:hover, .Decrease_Bet:hover {
+  border-bottom: 3rem solid #de8f8f;
+}
+
+.Increase_Bet:active, .Decrease_Bet:active {
+  border-bottom: 3rem solid #de5f5f;
+}
+
 .Play_Deal {
-  background-color: rosybrown;
+  background-color: rosybrown; /* #bc8f8f = rosybrown */
   color: black;
   display: flex;
   justify-content: center;
@@ -141,5 +149,14 @@
   margin: 0.5rem;
   border-radius: 5px;
   flex-grow: 0;
+  border: 0;
+}
+
+.Play_Deal:hover {
+  background-color: #de8f8f;
+}
+
+.Play_Deal:active {
+  background-color: #de5f5f;
 }
 

@@ -1,6 +1,6 @@
 function BetButton(props: any) {
   
-  function change() {
+  function change(): void {
     props.changeBet();
   }
 
