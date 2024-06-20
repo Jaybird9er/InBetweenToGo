@@ -12,7 +12,8 @@ function ButtonPanel( props: any ) {
       <div className={style.Bet_Display}>
         ${props.bet}
       </div>
-      <BetPanel changeBet={props.changeBet} style={style} />
+      <BetPanel changeBet={props.changeBet} style={style} playDeal={playDeal} bet={props.bet} />
+      {/* props.bet is passed to BetButtons to enable disabled attribute */}
       <button className={style.Play_Deal} onClick={playDeal}>
         {props.dealButton}
       </button>

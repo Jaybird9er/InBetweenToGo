@@ -10,11 +10,10 @@ import GameBoard from "./Components/Board/GameBoard";
       • Cards (Top / Middle / Bottom) 
   • Pot
     • ButtonPanel
-      • BetDisplay
-      X Buttons
+      -> BetDisplay - integrated
       • BetPanel
-        • BetButtons: IncreaseBet & DecreaseBet
-      • PlayDeal
+        • BetButtons -> IncreaseBet & DecreaseBet
+      -> PlayDeal
 
  ~ State Determinants ~
   • Not state
@@ -38,7 +37,7 @@ import GameBoard from "./Components/Board/GameBoard";
     • All cards are set to visibilty hidden or back of card
     • Play/Deal button is set to Play
       • Increase/Decrease buttons are inactive
-    • Player taps Play button to begin round
+    • Player taps Play button to begin
   2. Round Begins
     • Top (1) and Bottom (2) cards are dealt.
     • Pot increases by $1 (ante)
@@ -46,7 +45,7 @@ import GameBoard from "./Components/Board/GameBoard";
     • Increase/Decrease buttons are active
     • BetDisplay is set to $1
     • Player taps Increase/Decrease Arrows to set value in Bet Display
-    • Player taps Deal to for Middle (3) card to be dealt
+    • Player taps Deal for Middle (3) card to be dealt
   3. Middle card is dealt
     • Win/Lose displays above Pot
       • Win: Pot decreases by Bet Display Amount

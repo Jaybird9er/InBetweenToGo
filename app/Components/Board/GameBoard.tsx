@@ -8,26 +8,30 @@ import { useState, useEffect } from "react";
 function GameBoard() {
   let pot = true ? 10 : 5 ;
   const [bet, setBet] = useState(0); // bet begins at $0; changes to $1 after 1st deal
-  const [deal, setDeal] = useState(true); // false = Play ~ true = Deal
+  const [deal, setDeal] = useState(false); // false = Play ~ true = Deal
   const style: { [className: string]: string }  = styles;
-  let dealButton = deal ? "Play" : "Deal";
+  let dealButton = deal ? "Deal" : "Play"; // game begins on Play (false - 0)
   
   function playDeal(): void {
-    // initiate start of game
-    // before game starts
-    if(deal) {
-      setDeal(false);
-    } else {
+    if(!deal && bet === 0) {  // initiate start of game
       setDeal(true);
+      setBet(bet + 1); // set to $1 as minimum bet must be $1
+    }
+    if(deal) {
+      setDeal(false); // sets to Play
+    } else {
+      setDeal(true); // sets to Deal
     }
   }
 
+
+
   function changeBet(state: boolean): void {
-    if (!state && bet === 1) { // set to $1 as player's minimum bet must be $1
+    if (!state && bet === 1) { // restricts minimum bet to $1
       setBet(1);
     } else if (!state) {
       setBet(bet - 1);
-    } else if(bet === pot) { // prevents player from betting more than pot
+    } else if(bet === pot) { // prevents betting more than pot
       setBet(bet);
     } else {
       setBet(bet + 1);

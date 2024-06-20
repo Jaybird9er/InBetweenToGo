@@ -137,6 +137,10 @@
   border-bottom: 3rem solid #de5f5f;
 }
 
+.Increase_Bet:disabled, .Decrease_Bet:disabled {
+  border-bottom: 3rem solid rosybrown;
+}
+
 .Play_Deal {
   background-color: rosybrown; /* #bc8f8f = rosybrown */
   color: black;
