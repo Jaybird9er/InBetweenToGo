@@ -10,7 +10,6 @@ function GameBoard() {
   const [bet, setBet] = useState(0); // bet begins at $0; changes to $1 after 1st deal
   const [deal, setDeal] = useState(false); // false = Play ~ true = Deal
   const style: { [className: string]: string }  = styles;
-  let dealButton = deal ? "Deal" : "Play"; // game begins on Play (false - 0)
   
   function playDeal(): void {
     if(!deal && bet === 0) {  // initiate start of game
@@ -50,9 +49,9 @@ function GameBoard() {
 
   return (
     <section className={style.Gameboard}>
-      <CardGutter card={newDeck} />
+      <CardGutter card={newDeck} deal={deal} bet={bet} style={style} />
       <Pot pot={pot} />
-      <ButtonPanel bet={bet} changeBet={changeBet} style={style} playDeal={playDeal} dealButton={dealButton} />
+      <ButtonPanel bet={bet} changeBet={changeBet} style={style} playDeal={playDeal} deal={deal} />
     </section>
   );
 }

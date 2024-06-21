@@ -2,6 +2,8 @@ import BetPanel from "./Buttons/BetPanel";
 
 function ButtonPanel( props: any ) {
   const style: { [className: string]: string } = props.style;
+  let dealButton = props.deal ? "Deal" : "Play"; // game begins on Play (false ~ 0)
+
 
   function playDeal(): void {
     props.playDeal();
@@ -12,10 +14,9 @@ function ButtonPanel( props: any ) {
       <div className={style.Bet_Display}>
         ${props.bet}
       </div>
-      <BetPanel changeBet={props.changeBet} style={style} playDeal={playDeal} bet={props.bet} />
-      {/* props.bet is passed to BetButtons to enable disabled attribute */}
+      <BetPanel changeBet={props.changeBet} style={style} playDeal={playDeal} bet={props.bet} /> {/* props.bet enables BetButtons */}
       <button className={style.Play_Deal} onClick={playDeal}>
-        {props.dealButton}
+        {dealButton}
       </button>
     </section>
   );

@@ -1,10 +1,12 @@
-import styles from "../../../page.module.css"
 import Card from "./Card";
 import { Deck } from "@/app/interface";
 
 // interfaces required for applying type to props
-function CardGutter(props: Deck) {
-    
+function CardGutter(props: any) {
+    // deal={deal} bet={bet} 
+    const style: { [className: string]: string } = props.style;
+
+
     let cards = props.card;
     let card1 = {
         value: 0,
@@ -35,12 +37,12 @@ function CardGutter(props: Deck) {
         }
     }
     return (
-        <section className={styles.Card_Gutter}>
-        <Card key={1} value={card1.value} symbol={card1.symbol} label={card1.label} color={card1.color} />
-        <div className={styles.Middle_Card}>
-            <Card key={3} value={card3.value} symbol={card3.symbol} label={card3.label} color={card3.color} />
+        <section className={style.Card_Gutter}>
+        <Card key={1} value={card1.value} symbol={card1.symbol} label={card1.label} color={card1.color} {...props} />
+        <div className={style.Middle_Card}>
+            <Card key={3} value={card3.value} symbol={card3.symbol} label={card3.label} color={card3.color} {...props} />
         </div>
-        <Card key={2} value={card2.value} symbol={card2.symbol} label={card2.label} color={card2.color} />
+        <Card key={2} value={card2.value} symbol={card2.symbol} label={card2.label} color={card2.color} {...props} />
         </section>
     );
 }
