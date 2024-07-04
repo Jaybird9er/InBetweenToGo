@@ -5,6 +5,14 @@ import { Deck } from "@/app/interface";
 function CardGutter(props: any) {
     // deal={deal} bet={bet} 
     const style: { [className: string]: string } = props.style;
+    
+    /* 
+    How to set top, middle, and bottom cards:
+    
+        1. Play/Deal button is set to Play and all cards are face down
+        2. Hit Play button, it changes to deal, and top and bottom cards are face up
+
+    */
 
 
     let cards = props.card;
