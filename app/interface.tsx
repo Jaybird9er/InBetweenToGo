@@ -5,8 +5,3 @@ export interface Cards {
     label: string, 
     color: string
 }
-
-// interface for individual deck
-export interface Deck {
-    card: Cards[];
-}

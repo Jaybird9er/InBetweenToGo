@@ -1,5 +1,5 @@
 import Card from "./Card";
-import { Deck } from "@/app/interface";
+import { Cards } from "@/app/interface";
 
 // interfaces required for applying type to props
 function CardGutter(props: any) {
@@ -14,27 +14,8 @@ function CardGutter(props: any) {
 
     */
 
-
     let cards = props.card;
-    let card1 = {
-        value: 0,
-        symbol: "",
-        label: "",
-        color: ""
-    };
-    let card2 = {
-        value: 0,
-        symbol: "",
-        label: "",
-        color: ""
-    };
-    let card3 = {
-        value: 0,
-        symbol: "",
-        label: "",
-        color: ""
-    };
-    console.log("One: " + card1.value);
+    let card1, card2, card3: Cards = { value: 0, symbol: "", label: "", color: "" };
 
     for(let i = 1; i <= 3; i++) {
         if (i === 3) {
@@ -46,7 +27,6 @@ function CardGutter(props: any) {
         }
     }
 
-    console.log("Two: " + card1.value);
     return (
         <section className={style.Card_Gutter}>
         <Card key={1} value={card1.value} symbol={card1.symbol} label={card1.label} color={card1.color} className={deal} />
