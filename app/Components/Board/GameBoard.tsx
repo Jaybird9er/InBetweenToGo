@@ -46,7 +46,8 @@ function GameBoard() {
 
   return (
     <section className={style.Gameboard}>
-      <CardGutter card={newDeck} deal={deal} bet={bet} style={style} />
+      {/* <CardGutter card={newDeck} deal={deal} bet={bet} style={style} /> */}
+      <CardGutter card={newDeck} handStage={handStage} bet={bet} style={style} />
       <Pot pot={pot} />
       <ButtonPanel bet={bet} changeBet={changeBet} style={style} changeStage={changeStage} handStage={handStage} setBet={setBet} />
     </section>
