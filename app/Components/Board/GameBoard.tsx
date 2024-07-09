@@ -8,19 +8,34 @@ import { useState, useEffect } from "react";
 function GameBoard() {
   let pot = true ? 10 : 5 ;
   const [bet, setBet] = useState(1); // bet begins at $0; changes to $1 after 1st deal
-  const [deal, setDeal] = useState(false); 
-  const [handStage, setHandStage] = useState(0); // false _0 = Play ~ true _1 = Deal 
+  const [handStage, setHandStage] = useState(0); // false _0 = Deal ~ true _1 = Play 
   const style: { [className: string]: string }  = styles;
   
   /* changed playDeal() to this in order to track the stages of the hand which updates the PlayDeal button and the flipping of cards */
   function changeStage(): number {
     setHandStage(handStage + 1);
-    if(handStage === 2) { // Resets game for another hand
+    if(handStage === 3) { // Resets game for another hand
       setHandStage(1);
     }
+    console.log(handStage);
     return handStage;
   }
   
+  function useTime() {
+    const [time, setTime] = useState(() => new Date());
+    useEffect(() => {
+      const id = setInterval(() => {
+        setTime(new Date());
+      }, 3000);
+      return () => clearInterval(id);
+    }, []);
+    
+    return time;
+  }
+
+  const time = useTime();
+
+  // console.log(time);
   
   function changeBet(state: boolean): void {
     if (!state && bet === 1) { // restricts minimum bet to $1
@@ -46,7 +61,6 @@ function GameBoard() {
 
   return (
     <section className={style.Gameboard}>
-      {/* <CardGutter card={newDeck} deal={deal} bet={bet} style={style} /> */}
       <CardGutter card={newDeck} handStage={handStage} bet={bet} style={style} />
       <Pot pot={pot} />
       <ButtonPanel bet={bet} changeBet={changeBet} style={style} changeStage={changeStage} handStage={handStage} setBet={setBet} />

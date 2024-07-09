@@ -1,20 +1,20 @@
 import Card from "./Card";
 import { Cards } from "@/app/interface";
 
-// interfaces required for applying type to props
 function CardGutter(props: any) {
     const style: { [className: string]: string } = props.style;
-    let deal = props.handStage > 0 ? style.Card: style.Card_Back;
+    let deal = props.handStage > 0 && props.handStage < 3 ? style.Card: style.Card_Back;
     let dealM = props.handStage === 2 ? style.Card: style.Card_Back;
     /* 
     How to set top, middle, and bottom cards:
     
-        1. Play/Deal button is set to Play and all cards are face down
-        2. Hit Play button, it changes to deal, and top and bottom cards are face up
-
+    1. Play/Deal button is set to Play and all cards are face down
+    2. Hit Play button, it changes to deal, and top and bottom cards are face up
+    
     */
-
-    let cards = props.card;
+   
+   let cards = props.card;
+   // interfaces required for applying type to props
     let card1, card2, card3: Cards = { value: 0, symbol: "", label: "", color: "" };
 
     for(let i = 1; i <= 3; i++) {

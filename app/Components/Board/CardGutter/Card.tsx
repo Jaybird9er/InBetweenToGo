@@ -1,5 +1,3 @@
-import { Cards } from "@/app/interface";
-
 function Card(props: any) {
 
   let value = props.value;

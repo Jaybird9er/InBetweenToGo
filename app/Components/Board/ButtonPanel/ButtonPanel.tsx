@@ -2,7 +2,7 @@ import BetPanel from "./Buttons/BetPanel";
 
 function ButtonPanel( props: any ) {
   const style: { [className: string]: string } = props.style;
-  let dealLabel: string = props.handStage % 2 === 1 ? "Deal" : "Play"; // game begins on Play (false ~ 0)
+  let dealLabel: string = props.handStage % 2 === 0 || props.handStage === 3 ? "Deal" : "Play"; // game begins on Deal (false ~ 0)
   let bet = props.handStage === 0 ? 0 : props.bet;
 
   return (
