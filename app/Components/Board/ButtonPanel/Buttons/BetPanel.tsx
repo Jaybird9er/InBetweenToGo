@@ -5,7 +5,7 @@ function BetPanel(props: any) {
   let handStage = props.handStage;
   let increaseBet = () => props.changeBet(true);
   let decreaseBet = () => props.changeBet(false);
-  let isDisabled = props.bet === 1 && handStage === 0 ? true : false; // after Play is hit, bet goes to $1 and (In/De)crease buttons are enabled
+  let isDisabled = props.handStage === 0 || props.handStage === 3 ? true : false; // after play is hit, bet goes to $1 and (In/De)crease buttons are enabled
 
   return (
     <div className={style.Bet_Panel}>

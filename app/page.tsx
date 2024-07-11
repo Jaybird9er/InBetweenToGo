@@ -30,15 +30,15 @@ import GameBoard from "./Components/Board/GameBoard";
     • PlayDeal
     • Middle Card
 
- ~ Order of Round ~
-  1. Before Round Begins - (Stage 0)
+ ~ Order of Hand ~
+  1. Before the first hand begins - (Stage 0)
     • Pot is initially set to $10
     • Bet Display is set to $0
     • All cards are set to visibilty hidden or back of card
     • Play/Deal button is set to Play
       • Increase/Decrease buttons are inactive
     • Player taps Play button to begin
-  2. Round Begins - (Stage 1)
+  2. Hand begins - (Stage 1)
     • Top (1) and Bottom (2) cards are dealt.
     • Pot increases by $1 (ante)
     • Play/Deal button is set to Deal
@@ -51,8 +51,9 @@ import GameBoard from "./Components/Board/GameBoard";
       • Win: Pot decreases by Bet Display Amount
       • Lose: Pot increases by Bet Display Amount
     • Play/Deal button is set to Play
-  4. Next Round Begins - (Stage 1)
-    • Actions from Step 2 repeat
+  4. Next hand begins - (Stage 3)
+    • Some actions from Step 1 repeat
+      • bet remains at $1
   
 */
 

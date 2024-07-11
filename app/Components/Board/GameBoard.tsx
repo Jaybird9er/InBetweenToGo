@@ -12,30 +12,15 @@ function GameBoard() {
   const style: { [className: string]: string }  = styles;
   
   /* changed playDeal() to this in order to track the stages of the hand which updates the PlayDeal button and the flipping of cards */
+  console.log(handStage);
   function changeStage(): number {
     setHandStage(handStage + 1);
     if(handStage === 3) { // Resets game for another hand
       setHandStage(1);
+      setBet(1);
     }
-    console.log(handStage);
     return handStage;
   }
-  
-  function useTime() {
-    const [time, setTime] = useState(() => new Date());
-    useEffect(() => {
-      const id = setInterval(() => {
-        setTime(new Date());
-      }, 3000);
-      return () => clearInterval(id);
-    }, []);
-    
-    return time;
-  }
-
-  const time = useTime();
-
-  // console.log(time);
   
   function changeBet(state: boolean): void {
     if (!state && bet === 1) { // restricts minimum bet to $1
