@@ -13,13 +13,12 @@ function GameBoard() {
   
   /* changed playDeal() to this in order to track the stages of the hand which updates the PlayDeal button and the flipping of cards */
   console.log(handStage);
-  function changeStage(): number {
-    setHandStage(handStage + 1);
+  function changeStage(): void {
+    setHandStage(handStage => handStage + 1);
     if(handStage === 3) { // Resets game for another hand
       setHandStage(1);
       setBet(1);
     }
-    return handStage;
   }
   
   function changeBet(state: boolean): void {
@@ -34,6 +33,14 @@ function GameBoard() {
     }
   }
   
+  function winLoss(): boolean {     
+    // let handleInterval = setInterval(() => {console.log("Win/Loss")}, 500);
+    // setTimeout(() => {clearInterval(handleInterval)} , 2000);
+
+    setTimeout(() => {console.log("Win/Loss")} , 500);
+    return true;
+  }
+
   // to address hydration issue caused by calling newDeck (discrepency between card text on server and client side), the State and Effect hooks allow for the server and client sides to first render identical information (null in this case), and then after the client has hydrated, it allows the client to render fully ~ https://stackoverflow.com/questions/72673362/error-text-content-does-not-match-server-rendered-html
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
@@ -48,7 +55,7 @@ function GameBoard() {
     <section className={style.Gameboard}>
       <CardGutter card={newDeck} handStage={handStage} bet={bet} style={style} />
       <Pot pot={pot} />
-      <ButtonPanel bet={bet} changeBet={changeBet} style={style} changeStage={changeStage} handStage={handStage} setBet={setBet} />
+      <ButtonPanel bet={bet} changeBet={changeBet} style={style} changeStage={changeStage} handStage={handStage} setBet={setBet} winLoss={winLoss} />
     </section>
   );
 }

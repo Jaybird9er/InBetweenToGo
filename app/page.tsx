@@ -54,7 +54,17 @@ import GameBoard from "./Components/Board/GameBoard";
   4. Next hand begins - (Stage 3)
     • Some actions from Step 1 repeat
       • bet remains at $1
-  
+
+~ Winning & Losing Bets (Stage 2) ~
+• Win/Lost state is determined
+  • The winLoss() function evaluates whether the Middle card (3) is between the Top (1) and Bottom (2) cards.
+    • While winLoss() evaluates, In/Decrease Arrows are set to inactive.
+    • Winning
+      • After 500ms, Pot decreases by given amount
+    • Losing
+      • After 500ms, Bet Display is set to $0
+      • After 1000ms, Pot increases by given amount
+      
 */
 
 export default function Home() { 

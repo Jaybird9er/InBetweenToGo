@@ -2,10 +2,10 @@ import BetButton from "./BetButton";
 
 function BetPanel(props: any) {
   const style: { [className: string]: string } = props.style;
-  let handStage = props.handStage;
+  const handStage = props.handStage;
   let increaseBet = () => props.changeBet(true);
   let decreaseBet = () => props.changeBet(false);
-  let isDisabled = props.handStage === 0 || props.handStage === 3 ? true : false; // after play is hit, bet goes to $1 and (In/De)crease buttons are enabled
+  let isDisabled = handStage === 0 || handStage === 3 ? true : false; // after play is hit, bet goes to $1 and (In/De)crease buttons are enabled
 
   return (
     <div className={style.Bet_Panel}>
