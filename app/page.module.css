@@ -182,3 +182,7 @@
   background-color: #de5f5f;
 }
 
+.Play_Deal:disabled {
+  background-color: rosybrown;
+}
+

@@ -4,12 +4,15 @@ import Pot from "./Pot";
 import ButtonPanel from "./ButtonPanel/ButtonPanel";
 import newDeck from "../Deck/newDeck";
 import { useState, useEffect } from "react";
+import enums from "@/app/enums";
+import buildDeck from "../Deck/buildDeck";
 
 function GameBoard() {
-  let pot = true ? 10 : 5 ;
+  const [pot, setPot] = useState(10);
   const [bet, setBet] = useState(1); // bet begins at $0; changes to $1 after 1st deal
   const [handStage, setHandStage] = useState(0); // false _0 = Deal ~ true _1 = Play 
   const style: { [className: string]: string }  = styles;
+  let deck = newDeck;
   
   /* changed playDeal() to this in order to track the stages of the hand which updates the PlayDeal button and the flipping of cards */
   console.log(handStage);
@@ -33,15 +36,33 @@ function GameBoard() {
     }
   }
   
-  function winLoss(): boolean {     
-    // let handleInterval = setInterval(() => {console.log("Win/Loss")}, 500);
-    // setTimeout(() => {clearInterval(handleInterval)} , 2000);
-
-    setTimeout(() => {console.log("Win/Loss")} , 500);
-    return true;
+  function winLose(): boolean {     
+    let result = null;
+    let hiLo = [deck[deck.length - 3].value, deck[deck.length - 2].value];
+    let max = Math.max(...hiLo);
+    let min = Math.min(...hiLo);
+    let middleCard = deck[deck.length - 1].value;
+    
+    if (max > middleCard && middleCard > min) {
+      setTimeout(() => {console.log("Win")} , enums.delay);
+      result = true;
+    } else {
+      setTimeout(() => {console.log("Lose")} , enums.delay);
+      result = false;
+      setPot(pot => pot + bet);
+    }
+    // To Address: pops shouldn't happen before Stage 3
+    deck.pop()
+    deck.pop()
+    deck.pop()
+    console.log(deck.length);
+    if(deck.length === 1) {
+      deck = newDeck;
+    }
+    return result;
   }
 
-  // to address hydration issue caused by calling newDeck (discrepency between card text on server and client side), the State and Effect hooks allow for the server and client sides to first render identical information (null in this case), and then after the client has hydrated, it allows the client to render fully ~ https://stackoverflow.com/questions/72673362/error-text-content-does-not-match-server-rendered-html
+  // to address hydration issue caused by calling deck (discrepency between card text on server and client side), the State and Effect hooks allow for the server and client sides to first render identical information (null in this case), and then after the client has hydrated, it allows the client to render fully ~ https://stackoverflow.com/questions/72673362/error-text-content-does-not-match-server-rendered-html
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
     setHydrated(true);
@@ -53,9 +74,9 @@ function GameBoard() {
 
   return (
     <section className={style.Gameboard}>
-      <CardGutter card={newDeck} handStage={handStage} bet={bet} style={style} />
+      <CardGutter card={deck} handStage={handStage} bet={bet} style={style} />
       <Pot pot={pot} />
-      <ButtonPanel bet={bet} changeBet={changeBet} style={style} changeStage={changeStage} handStage={handStage} setBet={setBet} winLoss={winLoss} />
+      <ButtonPanel bet={bet} changeBet={changeBet} style={style} changeStage={changeStage} handStage={handStage} setBet={setBet} winLose={winLose} enums={enums} />
     </section>
   );
 }
