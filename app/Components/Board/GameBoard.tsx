@@ -5,22 +5,38 @@ import ButtonPanel from "./ButtonPanel/ButtonPanel";
 import newDeck from "../Deck/newDeck";
 import { useState, useEffect } from "react";
 import enums from "@/app/enums";
-import buildDeck from "../Deck/buildDeck";
+import { Cards } from "@/app/interface";
 
 function GameBoard() {
   const [pot, setPot] = useState(10);
   const [bet, setBet] = useState(1); // bet begins at $0; changes to $1 after 1st deal
   const [handStage, setHandStage] = useState(0); // false _0 = Deal ~ true _1 = Play 
   const style: { [className: string]: string }  = styles;
-  let deck = newDeck;
+  const [deck, setDeck] = useState<Cards[]>(newDeck);
   
   /* changed playDeal() to this in order to track the stages of the hand which updates the PlayDeal button and the flipping of cards */
   console.log(handStage);
+  // console.log(deck[deck.length - 1].label + " : " + deck[deck.length - 1].symbol);
+
   function changeStage(): void {
     setHandStage(handStage => handStage + 1);
-    if(handStage === 3) { // Resets game for another hand
+    if(handStage === 3) { // resets game for another hand
       setHandStage(1);
       setBet(1);
+      
+      // draws next three cards ~ will need to change for instances where Top card === Bottom card
+      let x = 0;
+      while (x < 3) {
+        deck.pop()
+        x++;
+      }
+      
+      // refresh the deck
+      console.log(deck.length);
+      if(deck.length < 3) {
+        setDeck([]);
+        setDeck(newDeck);
+      }
     }
   }
   
@@ -50,14 +66,6 @@ function GameBoard() {
       setTimeout(() => {console.log("Lose")} , enums.delay);
       result = false;
       setPot(pot => pot + bet);
-    }
-    // To Address: pops shouldn't happen before Stage 3
-    deck.pop()
-    deck.pop()
-    deck.pop()
-    console.log(deck.length);
-    if(deck.length === 1) {
-      deck = newDeck;
     }
     return result;
   }

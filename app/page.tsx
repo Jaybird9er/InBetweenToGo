@@ -69,13 +69,6 @@ import GameBoard from "./Components/Board/GameBoard";
 
 export default function Home() { 
   
-  console.log("newDeck");
-  console.log(newDeck);
-  console.log("newDeck first: " + newDeck[newDeck.length-3].value + " " + newDeck[newDeck.length-3].symbol + " " + newDeck[newDeck.length-3].label);
-  console.log("newDeck 42nd: " + newDeck[newDeck.length-2].value + " "  + newDeck[newDeck.length-2].symbol + " " + newDeck[newDeck.length-2].label);
-  console.log("newDeck last: " + newDeck[newDeck.length-1].value + " "  + newDeck[51].symbol + " " + newDeck[newDeck.length-1].label);
-  console.log("newDeck length: " + newDeck.length);
-  
   return (
     <main className={styles.main}>
       <GameBoard />
