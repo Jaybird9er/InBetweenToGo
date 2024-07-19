@@ -27,6 +27,9 @@ function ButtonPanel( props: any ) {
       <button className={style.Play_Deal} onClick={nextStage} disabled={isDisabled}>
         {dealLabel}
       </button>
+      <div className={style.Bankroll}>
+        ${props.bankroll}
+      </div>
     </section>
   );
 }

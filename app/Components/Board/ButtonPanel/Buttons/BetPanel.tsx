@@ -9,10 +9,10 @@ function BetPanel(props: any) {
   
 
   return (
-    <div className={style.Bet_Panel}>
-      <BetButton id={"IncreaseBet"} changeBet={increaseBet} className={style.Increase_Bet} sign={"+"} disabled={isDisabled} />
-      <BetButton id={"DecreaseBet"} changeBet={decreaseBet} className={style.Decrease_Bet} sign={"-"} disabled={isDisabled} />
-    </div>
+      <div className={style.Bet_Panel}>
+        <BetButton id={"IncreaseBet"} changeBet={increaseBet} className={style.Increase_Bet} sign={"+"} disabled={isDisabled} />
+        <BetButton id={"DecreaseBet"} changeBet={decreaseBet} className={style.Decrease_Bet} sign={"-"} disabled={isDisabled} />
+      </div>
   );
 }
 
