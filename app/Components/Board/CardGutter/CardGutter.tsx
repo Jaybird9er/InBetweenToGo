@@ -18,12 +18,12 @@ function CardGutter(props: any) {
     let card1, card2, card3: Cards = { value: 0, symbol: "", label: "", color: "" };
 
     for(let i = 1; i <= 3; i++) {
-        if (i === 3) {
-        card1 = cards[cards.length - i];
+        if (i === 1) {
+        card1 = cards[cards.length - i]; // 1st card dealt (top card)
         } else if ( i === 2) {
-        card2 = cards[cards.length - i]
+        card2 = cards[cards.length - i] // 2nd (bottom card)
         } else {
-        card3 = cards[cards.length - i]
+        card3 = cards[cards.length - i] // last card dealt (middle card)
         }
     }
 

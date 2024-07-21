@@ -1,5 +1,5 @@
 const enums = {
-    delay: 1000,
+    delay: 500,
 }
 
 export default enums;

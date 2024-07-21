@@ -1,7 +1,15 @@
 "use client";
 import styles from "./page.module.css";
-import newDeck from "./Components/Deck/newDeck";
 import GameBoard from "./Components/Board/GameBoard";
+
+export default function Home() { 
+  
+  return (
+    <main className={styles.main}>
+      <GameBoard />
+    </main>
+  );
+}
 
 /* 
  ~ Component Hierarchy ~
@@ -66,12 +74,3 @@ import GameBoard from "./Components/Board/GameBoard";
       • After 1000ms, Pot increases by given amount
       
 */
-
-export default function Home() { 
-  
-  return (
-    <main className={styles.main}>
-      <GameBoard />
-    </main>
-  );
-}
