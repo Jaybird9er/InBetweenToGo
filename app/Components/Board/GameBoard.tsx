@@ -26,25 +26,25 @@ function GameBoard() {
     let hiLo = [deck[deck.length - 1].value, deck[deck.length - 2].value];
     let max = Math.max(...hiLo);
     let min = Math.min(...hiLo);
+    let middleCard = deck[deck.length - 3];
     function twoCardDeal(): void {
       if (deck.length > 4) {
-        console.log("Card 1: " + deck[deck.length - 1].label + " : " + deck[deck.length - 1].symbol);
-        console.log("Card 2: " + deck[deck.length - 2].label + " : " + deck[deck.length - 2].symbol);
+        // console.log("Card 1: " + deck[deck.length - 1].label + " : " + deck[deck.length - 1].symbol);
+        // console.log("Card 2: " + deck[deck.length - 2].label + " : " + deck[deck.length - 2].symbol);
+        // console.log("Splice: " + deck.length);
         deck.splice(deck.length - 2, 2);
-        console.log("Splice: " + deck.length);
       } else {
         setDeck([]);
         setDeck(newDeck);
-        deck.push(useLastCard);
+        deck.push(middleCard);
       }
       setHandStage(0);
     }
 
-    console.log("Card 3: " + deck[deck.length - 3].label + " : " + deck[deck.length - 3].symbol);
-    let useLastCard = deck[deck.length - 3];
-    console.log("Card 3: " + useLastCard.label + " : " + useLastCard.symbol);
+    // console.log("Card 3: " + deck[deck.length - 3].label + " : " + deck[deck.length - 3].symbol);
+    // console.log("Card 3: " + useLastCard.label + " : " + useLastCard.symbol);
 
-    // 2-card instance: bottom card + 1 === top card
+    // 2-card instance: bottom card + 1 === top card – ex. 2:♠️ & 3:♥️
     if (handStage === 1 && min + 1 === max) {
       twoCardDeal();
     
@@ -56,7 +56,7 @@ function GameBoard() {
       setHandStage(1);
       setBet(1);
       
-      // draws next three cards ~ will need to change for instances where Top card === Bottom card
+      // draws next three cards
       let x = 0;
       while (x < 3) {
         deck.pop()
@@ -64,7 +64,7 @@ function GameBoard() {
       }
       
     }
-    console.log(deck.length);
+    // console.log(deck.length);
     // refresh the deck
     if(deck.length < 3) {
       setDeck([]);
@@ -90,32 +90,27 @@ function GameBoard() {
     let min = Math.min(...hiLo);
     let middleCard = deck[deck.length - 3].value;
 
-    console.log("Card 1: " + deck[deck.length - 1].value);
-    console.log("Card 2: " + deck[deck.length - 2].value);
-    console.log("Card 3*: " + deck[deck.length - 3].value);
-    // setInterval(() => {
-    //   while (bet > 0){
-    //     setBet(bet - 1)
-    //   }
-    // }, 1000);
+    // console.log("Card 1: " + deck[deck.length - 1].value + " : " + deck[deck.length - 1].symbol);
+    // console.log("Card 2: " + deck[deck.length - 2].value + " : " + deck[deck.length - 2].symbol);
+    // console.log("Card 3*: " + deck[deck.length - 3].value + " : " + deck[deck.length - 3].symbol);
     
     if (min + 1 === max) {
-      setTimeout(() => {console.log("Lose and Next")} , enums.delay * 2);
+      // setTimeout(() => {console.log("Lose and Next")} , enums.delay * 2);
       setTimeout(() => setPot(pot => pot + bet), enums.delay * 3);
       setTimeout(() => setBankroll(bankroll => bankroll - bet), enums.delay);
       setTimeout(() => setBet(0), enums.delay);
     } else if (min === max) {
-      setTimeout(() => {console.log("2x Win")} , enums.delay * 2);
+      // setTimeout(() => {console.log("2x Win")} , enums.delay * 2);
       setTimeout(() => setPot(pot => pot - 2), enums.delay * 3);
       setTimeout(() => setBankroll(bankroll => bankroll + 2), enums.delay);
       setTimeout(() => setBet(0), enums.delay);
     } else if (max > middleCard && middleCard > min) {
-      setTimeout(() => {console.log("Win")} , enums.delay);
+      // setTimeout(() => {console.log("Win")} , enums.delay);
       setTimeout(() => setPot(pot => pot - bet), enums.delay * 2);
       setTimeout(() => setBankroll(bankroll => bankroll + bet), enums.delay * 3);
       setTimeout(() => setBet(0), enums.delay);
     } else {
-      setTimeout(() => {console.log("Lose")} , enums.delay * 2);
+      // setTimeout(() => {console.log("Lose")} , enums.delay * 2);
       setTimeout(() => setPot(pot => pot + bet), enums.delay * 3);
       setTimeout(() => setBankroll(bankroll => bankroll - bet), enums.delay);
       setTimeout(() => setBet(0), enums.delay);
@@ -136,7 +131,7 @@ function GameBoard() {
     <section className={style.Gameboard}>
       <CardGutter card={deck} handStage={handStage} style={style} />
       <Pot pot={pot} />
-      <ButtonPanel bet={bet} changeBet={changeBet} style={style} changeStage={changeStage} handStage={handStage} setBet={setBet} winLose={winLose} enums={enums} bankroll={bankroll} />
+      <ButtonPanel bet={bet} changeBet={changeBet} style={style} changeStage={changeStage} handStage={handStage} setBet={setBet} winLose={winLose} enums={enums} bankroll={bankroll} card={deck} />
     </section>
   );
 }
