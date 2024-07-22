@@ -10,7 +10,7 @@ function BetPanel(props: any) {
   let max = Math.max(...hiLo);
   let min = Math.min(...hiLo);
   
-  // after play is hit, bet goes to $1 and (In/De)crease buttons are enabled, unless a 2-card instance is dealt
+  // after play is hit, bet goes to $1 and (In/De)crease buttons are enabled, unless a shorthand is dealt
   let isDisabled = handStage !== 1 || min + 1 === max || min === max ? true : false; 
   
   return (

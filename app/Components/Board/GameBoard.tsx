@@ -44,11 +44,11 @@ function GameBoard() {
     // console.log("Card 3: " + deck[deck.length - 3].label + " : " + deck[deck.length - 3].symbol);
     // console.log("Card 3: " + useLastCard.label + " : " + useLastCard.symbol);
 
-    // 2-card instance: bottom card + 1 === top card – ex. 2:♠️ & 3:♥️
+    // shorthand: bottom card + 1 === top card – ex. 2:♠️ & 3:♥️
     if (handStage === 1 && min + 1 === max) {
       twoCardDeal();
     
-    // 2-card instance: bottom card === top card
+    // shorthand: bottom card === top card
     } else if (handStage === 1 && min === max) {
       twoCardDeal();
 

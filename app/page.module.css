@@ -104,7 +104,6 @@
       margin: 0.5rem;
       margin-right: 2.5rem;
       border-radius: 5px;
-      flex-grow: 1;
     }
 
     .Buttons {
@@ -170,7 +169,6 @@
       align-items: center;
       margin: 0.5rem;
       border-radius: 5px;
-      flex-grow: 1;
       border: 0;
     }
 
