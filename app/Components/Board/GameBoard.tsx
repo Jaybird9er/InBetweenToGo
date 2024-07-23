@@ -10,8 +10,8 @@ import { Cards } from "@/app/interface";
 function GameBoard() {
   const [pot, setPot] = useState(10);
   const [bankroll, setBankroll] = useState(20);
-  const [handStage, setHandStage] = useState(0); // false _0 = Deal ~ true _1 = Play 
   const [bet, setBet] = useState(0); // bet begins at $0; changes to $1 after 1st deal
+  const [handStage, setHandStage] = useState(0); // false _0 = Deal ~ true _1 = Play 
   const [deck, setDeck] = useState<Cards[]>(newDeck); // initialized to newDeck with the Cards interface
   const style: { [className: string]: string }  = styles; // type used to describe CSS forms
   
@@ -82,6 +82,14 @@ function GameBoard() {
     } else {
       setBet(bet + 1);
     }
+  }
+
+  function changeBankroll(state: boolean): void {
+
+  }
+
+  function changePot(state: boolean): void {
+    
   }
   
   function winLose(): void {     
