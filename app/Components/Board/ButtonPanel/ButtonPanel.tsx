@@ -5,11 +5,18 @@ import DealLabel from "./Buttons/DealLabel";
 function ButtonPanel( props: any ) {
   const style: { [className: string]: string } = props.style;
   const [isDisabled, setIsDisable] = useState(false);
-  
+  let handStage = props.handStage;
+  let setHandStage = props.setHandStage;
+  let max = props.max;
+  let min = props.min;
+  let middleCard = props.middleCard;
+  let deck = props.deck;
+  let newDeck = props.newDeck;
+  let setDeck = props.setDeck;
   
   function nextStage(): void {
     // ensures that bet will set to 1 after moving from stage 0
-    if (props.bet === 0 && props.handStage === 0) {
+    if (props.bet === 0 && handStage === 0) {
       props.setBet(1);
     }
 
@@ -17,13 +24,15 @@ function ButtonPanel( props: any ) {
       After hitting Deal/Play button at Stage 2, play advances to Stage 3 (next hand). Since handStage updates after Deal/Play button is clicked, it appears that winLose is fired after Stage 1, not Stage 2. 
       • So, "handStage + 1 === 2" is just for clairty.
     */ 
-    if (props.handStage + 1 === 2) { 
+    if (handStage + 1 === 2) { 
       props.winLose();
+      // stage: number, bet: number, pot: number, setPot: (pot: number) => void, winLose: () => string
+      // props.changePot(props.handStage, props.bet, props.pot, props.setPot(props.pot), props.winLose());
       setIsDisable(!isDisabled);
       setTimeout(() => { setIsDisable(isDisabled => !isDisabled) }, props.enums.delay);
     }
 
-    props.changeStage(); // advances to next stage after performing other evaluations
+    props.changeStage(handStage, max, min, middleCard, deck, setHandStage, newDeck, setDeck); // advances to next stage after performing other evaluations
   }
 
   return (

@@ -39,21 +39,21 @@ export default function Home() {
       • Middle Card
 
   ~ Order of Hand ~
-    1. Before the first hand begins - (Stage 0)
+    1. Before the first hand of the round begins - (Stage 0)
       • Pot is initially set to $10
       • Bet Display is set to $0
-      • All cards are set to visibilty hidden or back of card
+      • All cards are set to back of card (visibilty hidden)
       • Play/Deal button is set to Play
         • Increase/Decrease buttons are inactive
-      • Player taps Play button to begin
+      • Player taps Deal button to begin
     2. Hand begins - (Stage 1)
       • Top (1) and Bottom (2) cards are dealt.
       • Pot increases by $1 (ante)
-      • Play/Deal button is set to Deal
+      • Play/Deal button is set to Play
       • Increase/Decrease buttons are active
       • BetDisplay is set to $1
       • Player taps Increase/Decrease Arrows to set value in Bet Display
-      • Player taps Deal for Middle (3) card to be dealt
+      • Player taps Play for Middle (3) card to be dealt
     3. Middle card is dealt - (Stage 2)
       • Win/Lose displays above Pot
         • Win: Pot decreases by Bet Display Amount
@@ -80,11 +80,14 @@ export default function Home() {
       • Bankroll is set intiail sum ($20).
       • Pot is initially set to $10.
     2. Player hits Deal Button (Stage 1)
-      • Bet Display increases by $1 (ante).
       • Player's Bankroll decrease by $1 (ante).
+      • Pot increases by $1 for each player (ante).
+    3. Player hits Deal Button (Stage 2)
+      • Bet Display increases by $1 (minimum bet).
+      • Player's Bankroll decrease by $1 (minimum bet).
       • Player may increase (or decrease) bet using In/Decrease Arrows
         • Each In/Decrease results in Bet Display increasing and decreasing with matching increases and decreases in player's Bankroll
-    3. Player hits Play Button (Stage 2).
+    4. Player hits Play Button (Stage 3).
       • After short delay (500ms), Chips/Cash flow in the following ways:
         • Win: 
           • Pot and Bet Display simultaneously decrease in increments of $1 until Bet hits 0 at a speed of 500ms.
@@ -92,9 +95,11 @@ export default function Home() {
         • Lose: 
           • The player's Bankroll and Bet Display simultaneously decrease in increments of $1 until Bet hits 0 at a speed of 500ms.
           • At the same time, the Pot adds $1 in increments of $1 until Bet hits 0 at a speed of 250ms ($2 / 500ms).
-    4. Player hits Deal Button (Stage 3)
-      • Bet Display is set to $0.
-      • Player hits Deal Button and Stage 1 repeats.
+            *** each element (Pot, Bet Display, Bankroll) will need to be made into components to allow them to be redrawn on each change ***
+    5. Game determines next player (Stage 4)
+      • If additional players need to complete their turn, game moves to next player and Stage 2.
+      • After every player has completed a hand, the first player starts a new hand and the game goes back to Stage 1.
+        • In Party Mode, the next player starts the new round.
 
 
 */
