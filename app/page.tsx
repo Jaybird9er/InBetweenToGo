@@ -16,12 +16,18 @@ export default function Home() {
     • GameBoard
       • CardGutter
         • Cards (Top / Middle / Bottom) 
-    • Pot
+      • Pot
       • ButtonPanel
         -> BetDisplay - integrated
         • BetPanel
           • BetButtons -> IncreaseBet & DecreaseBet
         -> PlayDeal
+
+  ~ Single Responsibility Principle (SRP) ~
+    • Notes:
+      • State will stay on Gameboard and be passed down to children components.
+      • Functions and other components of various purposes (visual, logic, etc...) are imported where needed. 
+  
 
   ~ State Determinants ~
     • Not state
@@ -38,12 +44,19 @@ export default function Home() {
       • PlayDeal
       • Middle Card
 
+      ~ Component State ~
+      • Gameboard - Holds: pot, bankroll, bet, handstage, deck, styles
+        • BetManager - Gets (from Gameboard): pot, bankroll, bet, handstage, styles
+          • BButton - Gets (from BetMangaer): handstage, styles
+        • CardGutter - Gets (from Gameboard): handstage, styles
+
+
   ~ Order of Hand ~
     1. Before the first hand of the round begins - (Stage 0)
       • Pot is initially set to $10
       • Bet Display is set to $0
       • All cards are set to back of card (visibilty hidden)
-      • Play/Deal button is set to Play
+      • Play/Deal button is set to Deal
         • Increase/Decrease buttons are inactive
       • Player taps Deal button to begin
     2. Hand begins - (Stage 1)
@@ -58,7 +71,7 @@ export default function Home() {
       • Win/Lose displays above Pot
         • Win: Pot decreases by Bet Display Amount
         • Lose: Pot increases by Bet Display Amount
-      • Play/Deal button is set to Play
+      • Play/Deal button is set to Deal
     4. Next hand begins - (Stage 3)
       • Some actions from Step 1 repeat
         • bet remains at $1

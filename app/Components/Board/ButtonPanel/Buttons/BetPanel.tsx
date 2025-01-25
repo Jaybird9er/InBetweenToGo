@@ -5,12 +5,14 @@ function BetPanel(props: any) {
   const handStage = props.handStage;
   let increaseBet = () => props.changeBet(true);
   let decreaseBet = () => props.changeBet(false);
-  let deck = props.card;
-  let hiLo = [deck[deck.length - 1].value, deck[deck.length - 2].value];
-  let max = Math.max(...hiLo);
-  let min = Math.min(...hiLo);
+  // let deck = props.card;
+  // let hiLo = [deck[deck.length - 1].value, deck[deck.length - 2].value];
+  // let max = Math.max(...hiLo);
+  // let min = Math.min(...hiLo);
+  let min = props.min;
+  let max = props.max;
   
-  // after play is hit, bet goes to $1 and (In/De)crease buttons are enabled, unless a shorthand is dealt
+  // after Play Button is hit, bet goes to $1 and (In/De)crease buttons are enabled, unless a shorthand is dealt
   let isDisabled = handStage !== 1 || min + 1 === max || min === max ? true : false; 
   
   return (

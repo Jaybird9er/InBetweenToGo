@@ -5,7 +5,7 @@ function BetButton(props: any) {
   }
 
   return (
-    <button className={props.className} onClick={change} id={props.id} disabled={props.disabled} >
+    <button className={props.className} onClick={change} id={props.id} disabled={props.disabled}>
       {props.sign}
     </button>
   );

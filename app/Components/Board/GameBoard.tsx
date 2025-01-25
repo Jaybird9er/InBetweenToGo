@@ -33,7 +33,7 @@ function GameBoard() {
     setHandStage: (value: number | ((prevState: number) => number)) => void,
     newDeck: any[],
     setDeck: (newDeck: any[] | []) => void
-  ): void {
+    ): void {
     console.log(handStage);
     setHandStage(handStage => handStage + 1);
     
@@ -75,7 +75,9 @@ function GameBoard() {
       setDeck([]);
       setDeck(newDeck);
     }
+    console.log("Cards in Deck: " + deck.length);
   }
+
   
   function changeBet(state: boolean): void {
     if (!state && bet === 1) { // restricts minimum bet to $1
@@ -185,7 +187,8 @@ function GameBoard() {
         card={deck} 
         min={min} 
         max={max} 
-        middleCard={middleCard} 
+        middleCard={middleCard}
+        hiLo={hiLo} 
         deck={deck} 
         setHandStage={setHandStage}
         newDeck={newDeck}

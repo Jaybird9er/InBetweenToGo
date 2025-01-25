@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BetPanel from "./Buttons/BetPanel";
 import DealLabel from "./Buttons/DealLabel";
+import BetManager from "./Buttons/BetManager";
 
 function ButtonPanel( props: any ) {
   const style: { [className: string]: string } = props.style;
@@ -41,7 +42,16 @@ function ButtonPanel( props: any ) {
         ${props.bet}
       </div>
       {/* props.bet enables BetButtons */}
-      <BetPanel changeBet={props.changeBet} style={style} bet={props.bet} handStage={props.handStage} card={props.card} /> 
+      {/* <BetPanel changeBet={props.changeBet} style={style} bet={props.bet} handStage={props.handStage} card={props.card} hiLo={props.hiLo} min={props.min} max={props.max} />  */}
+      <BetManager 
+        handStage={props.handStage} 
+        hiLo={props.hiLo} 
+        min={props.min} 
+        max={props.max} 
+        increaseBet={props.changeBet} 
+        decreaseBet={props.changeBet} 
+        style={style} 
+      /> 
       <button className={style.Play_Deal} onClick={nextStage} disabled={isDisabled}>
         <DealLabel handStage={props.handStage} card={props.card} />
       </button>
